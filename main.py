@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from db import create_tables
+from routes.reviews import router as reviews_router
 
 
 @asynccontextmanager
@@ -20,6 +21,9 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
 )
+
+# routers
+app.include_router(reviews_router)
 
 
 @app.get("/")
